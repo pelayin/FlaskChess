@@ -1,1 +1,1 @@
-"# FlaskChess" 
+# FlaskChess
