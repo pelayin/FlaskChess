@@ -40,3 +40,5 @@ tmtagsHistory
 *.sublime-workspace
 .bundle
 notes/
+
+.\chess.bat
