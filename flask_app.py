@@ -12,11 +12,11 @@ def index():
 @app.route("/move/<int:depth>/<path:fen>/")
 def get_move(depth, fen):
     print(depth)
-    print("Calculating...")
+    print("Calculando...")
     engine = Engine(fen)
     move = engine.iterative_deepening(depth - 1)
-    print("Move found!", move)
-    print()
+    print("¡Movimiento encontrado!", move)
+    print(move)
     return move
 
 
@@ -25,5 +25,6 @@ def test_get(tester):
     return tester
 
 
+# Aquí inicia la Aplicación
 if __name__ == "__main__":
     app.run(debug=True)

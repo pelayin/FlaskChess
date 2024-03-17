@@ -10,13 +10,17 @@ class Engine:
     def __init__(self, fen):
         self.board = chess.Board()
         self.MAX_DEPTH = 60
+        # El centipeón es la unidad de medida utilizada en el ajedrez como
+        # representación de la ventaja.
+        # Un centipeón es igual a 1/100 de un peón.
+        # Por lo tanto 100 centipeones = 1 peón
         self.piece_values = {
-            1: 100,  # pawn
-            2: 310,  # bishop
-            3: 300,  # knight
-            4: 500,  # rook
-            5: 900,  # queen
-            6: 99999,  # king
+            1: 100,  # pawn/peón
+            2: 310,  # bishop/alfil
+            3: 300,  # knight/caballo
+            4: 500,  # rook/torre
+            5: 900,  # queen/dama
+            6: 99999,  # king/rey (el valor es > que la suma del resto de las piezas)
         }
         self.square_table = square_table = {
             1: [

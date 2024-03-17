@@ -7,6 +7,9 @@ var board,
 
 // do not pick up pieces if the game is over
 // only pick up pieces for the side to move
+//-------------------------------------------
+// no recojas piezas si el juego ha terminado
+// sólo recoger piezas para el bando a mover
 var onDragStart = function (source, piece, position, orientation) {
     if (game.game_over() === true ||
         (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
@@ -32,6 +35,9 @@ var onDrop = function (source, target) {
 
 // update the board position after the piece snap
 // for castling, en passant, pawn promotion
+//------------------------------------------------------
+// actualiza la posición del tablero después de la pieza
+// para enroque, al paso, promoción de peón
 var onSnapEnd = function () {
     board.position(game.fen());
 };
@@ -75,8 +81,8 @@ var updateStatus = function () {
 };
 
 var cfg = {
-    draggable: true,
-    position: 'start',
+    draggable: true,    //arrastrable
+    position: 'start',  // posición de inicio
     onDragStart: onDragStart,
     onDrop: onDrop,
     onSnapEnd: onSnapEnd
@@ -106,6 +112,8 @@ var getResponseMove = function () {
 
 
 // did this based on a stackoverflow answer
+//------------------------------------------------
+// código basado en una respuesta stackoverflow
 // http://stackoverflow.com/questions/29493624/cant-display-board-whereas-the-id-is-same-when-i-use-chessboard-js
 setTimeout(function () {
     board = ChessBoard('board', cfg);
