@@ -437,24 +437,25 @@ class Engine:
             score += len(self.board.pieces(i, chess.WHITE)) * self.piece_values[i]
             # resta Negras
             score -= len(self.board.pieces(i, chess.BLACK)) * self.piece_values[i]
-        return score
+        return score  # valor de la posición
 
     def position_eval(self):
         score = 0
         # iterar a través de las piezas
         for i in range(1, 7):
-            # eval white pieces
+            # evalúa piezas Blancas
             w_squares = self.board.pieces(i, chess.WHITE)
             score += len(w_squares) * self.piece_values[i]
             for square in w_squares:
                 score += self.square_table[i][-square]
 
+            # evalúa piezas Negras
             b_squares = self.board.pieces(i, chess.BLACK)
             score -= len(b_squares) * self.piece_values[i]
             for square in b_squares:
                 score -= self.square_table[i][square]
 
-        return score
+        return score  # valor de la posición
 
     def minimax(self, depth, move, maximiser):
         if depth == 0:

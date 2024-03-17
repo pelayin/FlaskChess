@@ -11,7 +11,6 @@ def index():
 
 @app.route("/move/<int:depth>/<path:fen>/")
 def get_move(depth, fen):
-    print(depth)
     print("Calculando...")
     engine = Engine(fen)
     move = engine.iterative_deepening(depth - 1)
