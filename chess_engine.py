@@ -8,7 +8,7 @@ import cProfile
 class Engine:
 
     def __init__(self, fen):
-        self.board = chess.Board()
+        self.board = chess.Board()  # instancia un tablero en posición de inicio
         self.MAX_DEPTH = 60
         # El centipeón es la unidad de medida utilizada en el ajedrez como
         # representación de la ventaja.
@@ -20,7 +20,7 @@ class Engine:
             3: 300,  # knight/caballo
             4: 500,  # rook/torre
             5: 900,  # queen/dama
-            6: 99999,  # king/rey (el valor es > que la suma del resto de las piezas)
+            6: 99999,  # king/rey (el valor es > que la Σ del resto de las piezas)
         }
         self.square_table = square_table = {
             1: [
@@ -427,18 +427,21 @@ class Engine:
         response = random.choice(list(self.board.legal_moves))
         return str(response)
 
+    # evalúa el material que hay
+    # retorna la (Σ del valor de las piezas BLANCAS) - (Σ del de las NEGRAS)
     def material_eval(self):
         score = 0
-        # iterate through the pieces
+        # iterar a través de las piezas
         for i in range(1, 7):
+            # suma Blancas
             score += len(self.board.pieces(i, chess.WHITE)) * self.piece_values[i]
+            # resta Negras
             score -= len(self.board.pieces(i, chess.BLACK)) * self.piece_values[i]
-
         return score
 
     def position_eval(self):
         score = 0
-        # iterate through the pieces
+        # iterar a través de las piezas
         for i in range(1, 7):
             # eval white pieces
             w_squares = self.board.pieces(i, chess.WHITE)
